@@ -29,3 +29,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+// Employee Information
+// Get Employee register employee form
+Route::get('employee/create', function (){
+    return view('employee.create', [\App\Models\EmployeeInformation::class, 'create']);
+});
