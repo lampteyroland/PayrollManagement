@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ProfileController;
+use App\Models\EmployeeInformation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,11 +31,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+// Employees Routes
+
+Route::get('/employees/create', [EmployeeController::class, 'create']);
+// Store product information
+Route::post('/employees',  [EmployeeController::class, 'store']);
+
+
+
 require __DIR__.'/auth.php';
-
-
-// Employee Information
-// Get Employee register employee form
-Route::get('employee/create', function (){
-    return view('employee.create', [\App\Models\EmployeeInformation::class, 'create']);
-});
