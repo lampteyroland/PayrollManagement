@@ -3,17 +3,6 @@
     <x-card class="bg-green-50 pr-10 pl-10 pt-10 w-full">
         <form method="POST" action="/employees" class="mb-5 " >
                   @csrf
-{{--            <div class="space-y-12">--}}
-{{--                <div class="border-b border-gray-900/10 pb-12">--}}
-{{--                    <h2 class="text-base font-bold leading-7 text-gray-900">Employee Information</h2>--}}
-{{--                    <p class="mt-1 text-sm leading-6 text-gray-600">Fill form to save employee information</p>--}}
-
-{{--                </div>--}}
-
-{{--                <div class="border-b border-gray-900/10 pb-12">--}}
-{{--                    <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>--}}
-{{--                    <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>--}}
-
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="sm:col-span-3">
                             <label for="first_name"  class="block text-sm font-medium leading-6 text-gray-900">First name</label>

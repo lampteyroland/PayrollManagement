@@ -33,10 +33,23 @@ Route::middleware('auth')->group(function () {
 
 
 // Employees Routes
-
+//Get register employee form
 Route::get('/employees/create', [EmployeeController::class, 'create']);
-// Store product information
+// Store employee information
 Route::post('/employees',  [EmployeeController::class, 'store']);
+// show all employees
+Route::get('/employees', [EmployeeController::class, 'index']);
+//Get edit employee form
+Route::get('/employees/{employee}/edit', [EmployeeController::class, 'edit']);
+// update employee information
+Route::put('/employees/{employee}', [EmployeeController::class, 'update']);
+//Delete employee record
+Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy']);
+
+
+//show a single employee
+Route::get('/employees/{employee}', [EmployeeController::class, 'show']);
+
 
 
 
