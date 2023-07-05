@@ -55,6 +55,10 @@ class EmployeeController extends Controller
             'emergency_street_address' => 'required',
         ]);
 
+        if ($request->hasFile('profile_image')){
+            $formFields['profile_image'] = $request->file('profile_image')->store('profile','public');
+        }
+
         Employee::create($formFields);
 
         return redirect('/employees');

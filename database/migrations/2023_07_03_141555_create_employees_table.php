@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('region');
             $table->string('city');
+            $table->string('profile_image')->nullable();
             $table->string('job_title');
             $table->string('department');
             $table->string('work_email');
