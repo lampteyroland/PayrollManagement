@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-sidebar>
+
 
 
     <p>{{$employee->first_name}}</p>
@@ -19,7 +19,7 @@
 
     </form>
 
-    </x-sidebar>
+
 
 
 </x-app-layout>

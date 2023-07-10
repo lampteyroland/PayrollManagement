@@ -1,4 +1,5 @@
 <x-app-layout>
+    @include('partials._search   ')
 
         <div class="sm:block">
 
@@ -45,7 +46,11 @@
                 </tbody>
             </table>
         </div>
+    <div class="mt-6 p-4">
+        {{$employees->links()}}
     </div>
+    </div>
+
 
 
 </x-app-layout>
