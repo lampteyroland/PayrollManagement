@@ -1,5 +1,6 @@
 <x-app-layout>
 
+
     <x-card class="bg-green-50 pr-10 pl-10 pt-10 w-full">
         <form method="POST" action="/employees/{{$employee->id}}" class="mb-5 " >
             @csrf

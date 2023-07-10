@@ -1,5 +1,6 @@
 <x-app-layout>
 
+
     <x-card class="bg-green-50 pr-10 pl-10 pt-10 w-full">
         <form method="POST" action="/employees" class="mb-5 " enctype="multipart/form-data" >
                   @csrf
