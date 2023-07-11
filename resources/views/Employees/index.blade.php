@@ -19,6 +19,7 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($employees as $employee)
                     <tr class="bg-white">
+
                         <td class="px-6 py-4 text-sm text-gray-900">
                             <a>
                                 <p class="text-gray-500 group-hover:text-gray-900"><a href="/employees/{{$employee->id}}"> {{ $employee->first_name }} </a></p>
@@ -41,12 +42,17 @@
                         <td class="text-left whitespace-nowrap text-sm text-gray-500">
                         {{$employee->phone}}
                         </td>
+                        <td class="text-left whitespace-nowrap text-sm text-gray-500">
+                            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <a href="/employees/{{$employee->id}}/edit">Edit</a>
+                            </button>
+                        </td>
 
                 @endforeach
                 </tbody>
             </table>
         </div>
-    <div class="mt-6 p-4">
+    <div class="mt-3 p-4">
         {{$employees->links()}}
     </div>
     </div>
