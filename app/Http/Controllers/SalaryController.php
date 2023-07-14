@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Salary;
 use Illuminate\Http\Request;
 
 class SalaryController extends Controller
@@ -11,24 +13,37 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        return view('salary.index');
+        return view('Salaries.index', ['salaries' => Salary::latest()]);
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Salary $salary)
     {
-        //
+        return view('Salaries.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request )
     {
-        //
+        $formFields = $request->validate([
+            'base_salary' => ['required', 'integer'],
+            'pay_frequency' => 'required',
+            'pay_rate' => ['required', 'integer'],
+
+        ]);
+
+        Salary::create($formFields);
+
+        return redirect('/salaries');
+
+
     }
+
 
     /**
      * Display the specified resource.

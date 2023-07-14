@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ProfileController;
-use App\Models\EmployeeInformation;
+use App\Http\Controllers\SalaryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +49,18 @@ Route::get('/employees/{employee}', [EmployeeController::class, 'show']);
 
 
 // Salary Routes --------------------------------------------------------------------------------------------
-Route::get('/salary', [SalaryController::class]);
+Route::get('/salaries', [SalaryController::class, 'index'])->name('AllSalaries');
+Route::get('/salaries/create', [SalaryController::class, 'create'])->name('CreateSalaries');
+// Store employee information
+Route::post('/salaries',  [SalaryController::class, 'store']);
+//Get edit employee form
+Route::get('/salaries/{salary}/edit', [SalaryController::class, 'edit']);
+// update employee information
+Route::put('/salaries/{salary}', [SalaryController::class, 'update']);
+//Delete employee record
+Route::delete('/salaries/{salary}', [SalaryController::class, 'destroy']);
+//show a single employee
+Route::get('/salaries/{salary}}', [SalaryController::class, 'show']);
 
 
 

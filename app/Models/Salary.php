@@ -9,5 +9,5 @@ class Salary extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['base_salry', 'pay_frenquncy', 'pay_rate'];
+    protected $fillable = ['base_salary', 'pay_frequency', 'pay_rate'];
 }
