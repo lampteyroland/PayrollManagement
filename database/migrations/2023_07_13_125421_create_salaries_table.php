@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('Salaries', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->nullable()->references('id')->on('employees')->onDelete('cascade');
             $table->integer('base_salary');
             $table->string('pay_frequency');
             $table->integer('pay_rate');
+            $table->softDeletes();
 
             $table->timestamps();
         });

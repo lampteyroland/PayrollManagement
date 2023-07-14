@@ -15,6 +15,11 @@ class Employee extends Model
         'emergency_dob','emergency_street_address','profile_image'
    ];
 
+    public function salaries()
+    {
+        return $this->hasMany(Salary::class);
+    }
+
 
 
 }

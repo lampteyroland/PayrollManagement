@@ -10,4 +10,10 @@ class Salary extends Model
     use HasFactory;
 
     protected $fillable = ['base_salary', 'pay_frequency', 'pay_rate'];
+
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }

@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('emergency_phone');
             $table->string('emergency_dob');
             $table->string('emergency_street_address');
+            $table->softDeletes();
             $table->timestamps();
 
 
