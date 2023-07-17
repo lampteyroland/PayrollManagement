@@ -47,7 +47,6 @@
             <p>Don't have an account ?</p>
             <x-primary-button class="ml-3 bg-blue-400">
                 <a href="{{ route('register') }}"> Register</a>
-
             </x-primary-button>
         </div>
     </form>

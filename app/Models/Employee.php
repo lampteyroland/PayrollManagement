@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Employee extends Model
 {
@@ -15,10 +16,22 @@ class Employee extends Model
         'emergency_dob','emergency_street_address','profile_image'
    ];
 
-    public function salaries()
+    public function salaries(): HasOne
     {
-        return $this->hasMany(Salary::class);
+        return $this->hasOne(Salary::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($employee) {
+            $employeeCount = Employee::count() + 1;
+            $employee->employee_id = strtoupper(substr($employee->first_name, 0, 2) . substr($employee->last_name, 0, 2) . $employeeCount);
+        });
+    }
+
+
 
 
 

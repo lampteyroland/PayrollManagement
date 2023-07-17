@@ -33,7 +33,7 @@ class SalaryController extends Controller
         $formFields = $request->validate([
             'base_salary' => ['required', 'integer'],
             'pay_frequency' => 'required',
-            'pay_rate' => ['required', 'integer'],
+            'employee_id' => ['required'],
 
         ]);
 

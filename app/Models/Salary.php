@@ -9,11 +9,11 @@ class Salary extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['base_salary', 'pay_frequency', 'pay_rate'];
+    protected $fillable = ['employee_id','base_salary', 'pay_frequency'];
 
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Employee::class, 'id');
     }
 }
