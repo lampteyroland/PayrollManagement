@@ -17,20 +17,21 @@ class Employee extends Model
         'emergency_dob','emergency_street_address','profile_image'
    ];
 
-    public function salaries(): HasMany
+    public function salaries(): HasOne
     {
-        return $this->hasMany(Salary::class);
+        return $this->hasOne(Salary::class);
     }
 
-    protected static function boot()
-    {
-        parent::boot();
+        protected static function boot()
+        {
+            parent::boot();
 
-        static::creating(function ($employee) {
-            $employeeCount = Employee::count() + 1;
-            $employee->employee_id = strtoupper(substr($employee->first_name, 0, 2) . substr($employee->last_name, 0, 2) . $employeeCount);
-        });
-    }
+            static::creating(function ($employee) {
+                $startNumber = 1000;
+                $employeeCount = Employee::count() + 1;
+                $employee->employee_number = strtoupper(substr($employee->first_name, 0, 2) . substr($employee->last_name, 0, 2) . ($employeeCount + $startNumber));
+            });
+        }
 
 
 
