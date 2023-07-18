@@ -1,23 +1,29 @@
-<x-app-layout>
+    <x-app-layout>
     <x-card class="bg-green-50 pr-10 pl-10 pt-10 w-full">
         <form method="POST" action="/salaries" class="mb-5 " enctype="multipart/form-data" >
             @csrf
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
                 <div class="sm:col-span-3">
-                    <label for="employee_id" class="block text-sm font-medium leading-6 text-gray-900">Employee ID</label>
+                    <label for="employee_id" class="block text-sm font-medium leading-6 text-gray-900">Select employee</label>
                     <div class="mt-2">
-                        <input type="text" name="employee_id" id="employee_id" autocomplete="employee_id" value="{{old('employee_id')}}"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        @error('employee_id')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
+{{--                        <input type="text" name="employee_id" id="employee_id" autocomplete="employee_id" value="{{old('employee_id')}}"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">--}}
+{{--                        @error('employee_id')--}}
+{{--                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--                        @enderror--}}
+
+                        <select name="employee_id" id="employee_id">
+                            @foreach($employees as $employee)
+                                <option value="{{ $employee->employee_id }}">{{ $employee->employee_id }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
                 <div class="sm:col-span-3">
                     <label for="base_salary"  class="block text-sm font-medium leading-6 text-gray-900">Base Salary</label>
                     <div class="mt-2">
-                        <input type="text" name="base_salary"  value="{{old('base_salary')}}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="number" name="base_salary"  value="{{old('base_salary')}}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         @error('base_salary')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror

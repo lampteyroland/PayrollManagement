@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Employee;
 use App\Models\Salary;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class SalaryController extends Controller
 {
@@ -20,9 +23,11 @@ class SalaryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Salary $salary)
+    public function create(Salary $salary )
     {
-        return view('Salaries.create');
+
+        $employees = Employee::with('salaries')->get();
+        return view('Salaries.create', compact('employees'));
     }
 
     /**
@@ -31,9 +36,9 @@ class SalaryController extends Controller
     public function store(Request $request )
     {
         $formFields = $request->validate([
-            'base_salary' => ['required', 'integer'],
+            'base_salary' => 'required|numeric',
             'pay_frequency' => 'required',
-            'employee_id' => ['required'],
+            'employee_id' => 'required|exists:employees,employee_id',
 
         ]);
 

@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('Salaries', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
             $table->bigInteger('base_salary');
             $table->string('pay_frequency');
             $table->softDeletes();
             $table->timestamps();
         });
+
+
     }
 
     /**
