@@ -56,9 +56,10 @@ class SalaryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Salary $salary)
     {
-        //
+        return  view('Salaries.show', ['salary' => $salary]);
+
     }
 
     /**
@@ -67,7 +68,7 @@ class SalaryController extends Controller
     public function edit(Salary $salary)
     {
         $employees = Employee::all();
-        return view('Salaries.edit', ['salary' => $salary], compact('employees'));
+        return view('Salaries.edit', compact('salary','employees'));
     }
 
     /**
@@ -79,7 +80,7 @@ class SalaryController extends Controller
             'base_salary' => 'required|numeric',
             'pay_frequency' => 'required',
             'employee_id' => ['required','exists:employees,id',
-                Rule::unique('salaries', 'employee_id')],
+                Rule::unique('salaries')->ignore($salary->id)],
         ]);
 
         $salary->update($formFields);
@@ -90,8 +91,9 @@ class SalaryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Salary $salary)
     {
-        //
+        $salary->delete();
+        return redirect('/salaries');
     }
 }

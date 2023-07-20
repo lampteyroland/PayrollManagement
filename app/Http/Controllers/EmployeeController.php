@@ -72,6 +72,7 @@ class EmployeeController extends Controller
     }
 
     public function update(Request $request, Employee $employee){
+
         $formFields = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',

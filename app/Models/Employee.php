@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = ['first_name', 'last_name', 'other_name','title','email','phone','dob','street_address',
         'country', 'region','city', 'job_title', 'department', 'work_email','start_date','emergency_first_name',

@@ -26,7 +26,7 @@
 {{--                        </a>--}}
 {{--                    </td>--}}
                     <td class="px-6 py-4 text-sm text-gray-500">
-                        <a href="/salaries/{{$salary->id}}/edit">{{($salary->employee->first_name) .' ' .( $salary->employee->last_name)}}</a>
+                        <a href="/salaries/{{$salary->id}}">{{($salary->employee->first_name) .' ' .( $salary->employee->last_name)}}</a>
 
 
                     </td>
