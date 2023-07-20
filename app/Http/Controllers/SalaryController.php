@@ -19,7 +19,7 @@ class SalaryController extends Controller
     {
 
         $employees = Employee::all();
-        return view('Salaries.index', ['salaries' => Salary::latest()->paginate(5)], compact('employees'));
+        return view('Salaries.index', ['salaries' => Salary::latest()->paginate(10)], compact('employees'));
 
     }
 

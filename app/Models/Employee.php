@@ -35,6 +35,14 @@ class Employee extends Model
             });
         }
 
+        public function scopeFilter($query, array $filters){
+               if ($filters['search'] ?? false)
+            {
+                $query->where('first_name', 'like', '%' . request('search').'%')
+                    ->orWhere('last_name', 'like', '%' . request('search').'%');
+            }
+        }
+
 
 
 

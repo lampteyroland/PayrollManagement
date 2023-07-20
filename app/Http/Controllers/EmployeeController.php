@@ -11,7 +11,9 @@ class EmployeeController extends Controller
 
     // Show all employees
     public function  index(){
-        return view('employees.index', ['employees' => Employee::latest()->paginate(10)]);
+        return view('employees.index',
+            ['employees' => Employee::latest()->filter(request(['search']))->paginate(10)
+            ]);
 
     }
 
