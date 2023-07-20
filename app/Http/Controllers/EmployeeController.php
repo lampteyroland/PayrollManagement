@@ -62,7 +62,7 @@ class EmployeeController extends Controller
 
         Employee::create($formFields);
 
-        return redirect('/employees');
+        return redirect('/employees')->with('success', 'Employee added successfully.');
 
 
     }
@@ -72,6 +72,7 @@ class EmployeeController extends Controller
     }
 
     public function update(Request $request, Employee $employee){
+
         $formFields = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',

@@ -60,7 +60,8 @@ Route::put('/salaries/{salary}', [SalaryController::class, 'update']);
 //Delete employee record
 Route::delete('/salaries/{salary}', [SalaryController::class, 'destroy']);
 //show a single employee
-Route::get('/salaries/{salary}}', [SalaryController::class, 'show']);
+Route::get('/salaries/{salary}', [SalaryController::class, 'show']);
+
 
 
 

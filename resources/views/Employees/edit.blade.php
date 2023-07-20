@@ -3,8 +3,8 @@
 
     <x-card class="bg-green-50 pr-10 pl-10 pt-10 w-full">
         <form method="POST" action="/employees/{{$employee->id}}" class="mb-5 " >
-            @csrf
             @method('PUT')
+            @csrf
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div class="sm:col-span-3">
                     <label for="first_name"  class="block text-sm font-medium leading-6 text-gray-900">First name</label>
@@ -39,14 +39,15 @@
                 <div class="sm:col-span-3">
                     <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                     <div class="mt-2">
-                        <select name="title"  value="{{$employee->title}}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                            <option>Mr</option>
-                            <option>Miss</option>
-                            <option>Mrs</option>
-                            <option>Dr.</option>
-                            <option>Prof.</option>
-                            <option>Rev</option>
+                        <select name="title" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="Mr" {{ $employee->title === 'Mr' ? 'selected' : '' }}>Mr</option>
+                            <option value="Miss" {{ $employee->title === 'Miss' ? 'selected' : '' }}>Miss</option>
+                            <option value="Mrs" {{ $employee->title === 'Mrs' ? 'selected' : '' }}>Mrs</option>
+                            <option value="Dr." {{ $employee->title === 'Dr.' ? 'selected' : '' }}>Dr.</option>
+                            <option value="Prof." {{ $employee->title === 'Prof.' ? 'selected' : '' }}>Prof.</option>
+                            <option value="Rev" {{ $employee->title === 'Rev' ? 'selected' : '' }}>Rev</option>
                         </select>
+
                     </div>
                     @error('title')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -98,10 +99,10 @@
                 <div class="col-span-2 ">
                     <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
                     <div class="mt-2">
-                        <select id="country" name="country" value="{{$employee->country}}" autocomplete="country"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                            <option>United States</option>
-                            <option>Canada</option>
-                            <option>Mexico</option>
+                        <select id="country" name="country" autocomplete="country" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="United States" {{ $employee->country === 'United States' ? 'selected' : '' }}>United States</option>
+                            <option value="Canada" {{ $employee->country === 'Canada' ? 'selected' : '' }}>Canada</option>
+                            <option value="Mexico" {{ $employee->country === 'Mexico' ? 'selected' : '' }}>Mexico</option>
                         </select>
                     </div>
                     @error('country')
@@ -111,11 +112,12 @@
                 <div class="col-span-2">
                     <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Region</label>
                     <div class="mt-2">
-                        <select id="region" value="{{$employee->region}}" name="region" autocomplete="region"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                            <option>Greater Accra</option>
-                            <option>Eastern Region</option>
-                            <option>Western Region</option>
+                        <select id="region" name="region" autocomplete="region" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="Greater Accra" {{ $employee->region === 'Greater Accra' ? 'selected' : '' }}>Greater Accra</option>
+                            <option value="Eastern Region" {{ $employee->region === 'Eastern Region' ? 'selected' : '' }}>Eastern Region</option>
+                            <option value="Western Region" {{ $employee->region === 'Western Region' ? 'selected' : '' }}>Western Region</option>
                         </select>
+
                     </div>
                     @error('region')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -240,14 +242,15 @@
                     <div class="sm:col-span-3">
                         <label for="emergency_title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                         <div class="mt-2">
-                            <select id="emergency_title" name="emergency_title" value="{{$employee->emergency_title}}" autocomplete="emergency_title" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                <option>Mr</option>
-                                <option>Miss</option>
-                                <option>Mrs</option>
-                                <option>Dr.</option>
-                                <option>Prof.</option>
-                                <option>Rev</option>
+                            <select id="emergency_title" name="emergency_title" autocomplete="emergency_title" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <option value="Mr" {{ $employee->emergency_title === 'Mr' ? 'selected' : '' }}>Mr</option>
+                                <option value="Miss" {{ $employee->emergency_title === 'Miss' ? 'selected' : '' }}>Miss</option>
+                                <option value="Mrs" {{ $employee->emergency_title === 'Mrs' ? 'selected' : '' }}>Mrs</option>
+                                <option value="Dr." {{ $employee->emergency_title === 'Dr.' ? 'selected' : '' }}>Dr.</option>
+                                <option value="Prof." {{ $employee->emergency_title === 'Prof.' ? 'selected' : '' }}>Prof.</option>
+                                <option value="Rev" {{ $employee->emergency_title === 'Rev' ? 'selected' : '' }}>Rev</option>
                             </select>
+
                             @error('emergency_title')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror

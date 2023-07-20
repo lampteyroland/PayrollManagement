@@ -5,25 +5,24 @@
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
                 <div class="sm:col-span-3">
-                    <label for="employee_id" class="block text-sm font-medium leading-6 text-gray-900">Select employee</label>
+                    <label for="pay_frequency" class="block text-sm font-medium leading-6 text-gray-900">Pay Frequency</label>
                     <div class="mt-2">
-{{--                        <input type="text" name="employee_id" id="employee_id" autocomplete="employee_id" value="{{old('employee_id')}}"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">--}}
-{{--                        @error('employee_id')--}}
-{{--                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
-{{--                        @enderror--}}
-
-                        <select name="employee_id" id="employee_id">
+                        <select name="employee_id"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">>
+                            <option value="">Select an employee</option>
                             @foreach($employees as $employee)
-                                <option value="{{ $employee->employee_id }}">{{ $employee->employee_id }}</option>
+                                <option value="{{ $employee->id }} ">{{ $employee->first_name }}</option>
                             @endforeach
-                        </select>
+                                </select>
+                        @error('employee_id')
+                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="sm:col-span-3">
                     <label for="base_salary"  class="block text-sm font-medium leading-6 text-gray-900">Base Salary</label>
                     <div class="mt-2">
-                        <input type="number" name="base_salary"  value="{{old('base_salary')}}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="number" name="base_salary"  {{old('base_salary')}}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         @error('base_salary')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
@@ -34,12 +33,13 @@
                 <div class="sm:col-span-3">
                     <label for="pay_frequency" class="block text-sm font-medium leading-6 text-gray-900">Pay Frequency</label>
                     <div class="mt-2">
-                        <select name="pay_frequency"  value="{{old('pay_frequency')}}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                            <option>Annually</option>
-                            <option>Monthly</option>
-                            <option>Weekly</option>
-                            <option>Bi-weekly</option>
-                            <option>Quaterly</option>
+                        <select name="pay_frequency"  {{old('pay_frequency') }}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="">Select Frequency</option>
+                            <option value="Annually" {{ old('pay_frequency') == 'Annually' ? 'selected' : '' }}>Annually</option>
+                            <option value="Monthly" {{ old('pay_frequency') == 'Monthly' ? 'selected' : '' }}>Monthly</option>
+                            <option value="Weekly" {{ old('pay_frequency') == 'Weekly' ? 'selected' : '' }}>Weekly</option>
+                            <option value="Bi-weekly" {{ old('pay_frequency') == 'Bi-weekly' ? 'selected' : '' }}>Bi-weekly</option>
+                            <option value="Quaterly" {{ old('pay_frequency') == 'Quaterly' ? 'selected' : '' }}>Quaterly</option>
                         </select>
                     </div>
                     @error('pay_frequency')
