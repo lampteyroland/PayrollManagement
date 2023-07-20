@@ -20,7 +20,7 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
 
-             @include('layouts.navigation')
+
 
              <!-- Page Heading -->
              @if (isset($header))
@@ -33,12 +33,13 @@
 
         <main>
             <div class="flex">
-                <div class="bg-gray-200 w-full max-w-xs md:fixed md:w-1/4  overflow-y-auto">
+                <div class=" w-full max-w-xs md:fixed md:w-1/4  overflow-y-auto">
                     <x-sidebar>
 
                     </x-sidebar>
                 </div>
-                <div class="w-3/4 ml-auto">
+                <div class="w-3/4 ml-auto pr-1"  >
+                    @include('layouts.navigation')
                     {{$slot}}
                 </div>
             </div>
