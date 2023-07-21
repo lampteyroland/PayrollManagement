@@ -20,7 +20,7 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
 
-             @include('layouts.navigation')
+
 
              <!-- Page Heading -->
              @if (isset($header))
@@ -32,13 +32,14 @@
              @endif
 
         <main>
-            <div class="flex">
-                <div class="bg-gray-200 w-full max-w-xs md:fixed md:w-1/4  overflow-y-auto">
+            <div class="flex ">
+                <div class=" w-full max-w-xs md:fixed md:w-1/6  overflow-y-auto ">
                     <x-sidebar>
 
                     </x-sidebar>
                 </div>
-                <div class="w-3/4 ml-auto">
+                <div class="w-5/6 ml-auto sm:ml-auto">
+                    @include('layouts.navigation')
                     {{$slot}}
                 </div>
             </div>
@@ -54,6 +55,6 @@
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/flowbite.min.js"></script>
-
+    <x-flash-message/>
     </body>
 </html>
