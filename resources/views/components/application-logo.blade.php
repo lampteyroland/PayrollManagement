@@ -1,1 +1,1 @@
-<img src="{{asset('images/immersionn.png')}}" alt="Application Logo">
+<img src="{{asset('images/logow.png')}}" alt="Application Logo">

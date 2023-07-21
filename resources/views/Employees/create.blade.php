@@ -1,18 +1,18 @@
 <x-app-layout>
+    <div class="pr-10 pl-10 w-full">
+        <h2 class="text-2xl font-bold">Register an new employee</h2>
+
+    </div>
 
 
-    <x-card class="bg-green-50 pr-10 pl-10 pt-10 w-full">
+    <x-card class=" pr-10 pl-6 w-full">
         <form method="POST" action="/employees" class="mb-5 " enctype="multipart/form-data" >
                   @csrf
-                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-{{--                        <div class="sm:col-span-3">--}}
-{{--                            <label for="employee_id"  class="block text-sm font-medium leading-6 text-gray-900">Employee Number</label>--}}
-{{--                            <div class="mt-2">--}}
-{{--                                <input type="text" name="employee_id"  value="{{old('employee_id')}}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">--}}
-{{--                                @error('employee_id')--}}
-{{--                                <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
+            <h2 class=" mt-10 text-base font-semibold leading-7 text-gray-900">Personal Information </h2>
+            <p class=" text-sm leading-6 text-gray-600">Add personal information of employee</p>
+
+            <div class="mt-3 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
                             <div class="sm:col-span-3">
                             <label for="first_name"  class="block text-sm font-medium leading-6 text-gray-900">First name</label>
                             <div class="mt-2">
@@ -140,38 +140,59 @@
                             </div>
                         </div>
 
+                <div class="col-span-full" x-data="imageUploader()">
+                    <label for="profile_image" class="block text-sm font-medium leading-6 text-gray-900">Employees Image</label>
 
-                                                <div class="col-span-full">
-                                                    <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900"> Employees Image</label>
-{{--                                                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">--}}
-{{--                                                        <div class="text-center">--}}
-{{--                                                            <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">--}}
-{{--                                                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />--}}
-{{--                                                            </svg>--}}
-{{--                                                            <div class="mt-4 flex text-sm leading-6 text-gray-600">--}}
-{{--                                                                <label for="profile_image" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">--}}
-{{--                                                                    <span class="bg-green-50">Upload a file</span>--}}
-{{--                                                                    <input id="profile_image" name="profile_image" type="file" class="sr-only">--}}
-{{--                                                                </label>--}}
-{{--                                                                <p class="pl-1">or drag and drop</p>--}}
-{{--                                                            </div>--}}
-{{--                                                            <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-
-                                                    <div class="mb-6">
-
-                                                        <input
-                                                            type="file"
-                                                            class="border border-gray-200 rounded p-2 w-full"
-                                                            name="profile_image"
-                                                        />
-                                                    </div>
-                                                    @error('profile_image')
-                                                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                                                    @enderror
-                                                </div>
+                    <div class="mb-6">
+                        <input
+                            type="file"
+                            class="border border-gray-200 rounded p-2 w-full"
+                            name="profile_image"
+                            x-on:change="showImagePreview"
+                        />
                     </div>
+
+                    <img
+                        x-show="imagePreview"
+                        :src="imagePreview"
+                        alt="Preview"
+                        class="w-30 h-20 rounded-full mx-auto mb-4"
+                    />
+
+                    @error('profile_image')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <script>
+                    function imageUploader() {
+                        return {
+                            imagePreview: null,
+                            showImagePreview(event) {
+                                const file = event.target.files[0];
+                                const reader = new FileReader();
+
+                                reader.onload = (e) => {
+                                    this.imagePreview = e.target.result;
+                                };
+
+                                if (file) {
+                                    reader.readAsDataURL(file);
+                                }
+                            },
+                        };
+                    }
+                </script>
+
+            </div>
+
+                <div>
+                    <!-- Add a horizontal line with the default styling -->
+                    <hr class="my-4 border-t-2 border-gray-500">
+
+                    <!-- Customizing the divider -->
+
+
                 </div>
 
                 <div class="border-b border-gray-900/10 pb-12">
@@ -221,10 +242,18 @@
 
                     </div>
                 </div>
+            <div>
+                <!-- Add a horizontal line with the default styling -->
+                <hr class="my-4 border-t-2 border-gray-500">
+
+                <!-- Customizing the divider -->
+
+
+            </div>
 
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Emergency Contact </h2>
-                    <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">Add the emergency contact of employee</p>
 
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="sm:col-span-3">
