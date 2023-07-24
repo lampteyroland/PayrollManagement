@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="pr-10 pl-10 w-full">
-        <h2 class="text-2xl font-bold">Register an new employee</h2>
+        <h2 class="text-2xl font-bold">Register a new employee</h2>
 
     </div>
 

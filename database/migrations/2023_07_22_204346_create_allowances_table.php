@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Salaries', function (Blueprint $table) {
+        Schema::create('allowances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
-            $table->double('base_salary');
-            $table->string('pay_frequency');
+            $table->string('allowance_type')->nullable();
+            $table->double('allowance_amount')->nullable();
+            $table->string('currency')->nullable();
+            $table->dateTime('allowance_date')->nullable();
+            $table->boolean('is_taxable')->nullable();
+            $table->text('remarks')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
-
-
     }
 
     /**
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Salaries');
+        Schema::dropIfExists('allowances');
     }
 };

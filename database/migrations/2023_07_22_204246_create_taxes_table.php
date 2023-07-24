@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Salaries', function (Blueprint $table) {
+        Schema::create('taxes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
-            $table->double('base_salary');
-            $table->string('pay_frequency');
-            $table->softDeletes();
+            $table->string('tax_name');
+            $table->string('tax_type');
+            $table->double('tax_rate');
+            $table->dateTime('tax_date');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
-
-
     }
 
     /**
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Salaries');
+        Schema::dropIfExists('taxes');
     }
 };
