@@ -19,6 +19,7 @@ return new class extends Migration
             $table->double('tax_rate');
             $table->dateTime('tax_date');
             $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

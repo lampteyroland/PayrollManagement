@@ -78,6 +78,11 @@ Route::group(['prefix' => 'taxes'], function (){
     Route::get('/', [TaxController::class, 'index'])->name('AllTaxes');
     Route::get('/create', [TaxController::class, 'create'])->name('AddTaxes');
     Route::post('/',  [TaxController::class, 'store']);
+    Route::get('/{tax}/edit', [TaxController::class, 'edit']);
+    Route::put('/{tax}', [TaxController::class, 'update']);
+    Route::delete('/{tax}', [TaxController::class, 'destroy']);
+    Route::get('/{tax}', [TaxController::class, 'show']);
+
 
 });
 

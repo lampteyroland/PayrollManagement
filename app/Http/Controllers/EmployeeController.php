@@ -18,7 +18,11 @@ class EmployeeController extends Controller
     }
 
     public function show(Employee $employee){
-        return  view('employees.show', ['employee' => $employee]);
+        // Get all tax records related to the employee
+        $taxRecords = $employee->taxes;
+
+        // Now you can pass the employee and tax records to the view
+        return view('employees.show', compact('employee', 'taxRecords'));
     }
 
 

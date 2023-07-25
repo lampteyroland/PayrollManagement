@@ -42,6 +42,23 @@
             </div>
 
             <div>
+                @unless($taxRecords->isEmpty())
+                    <h3 class="mt-6 text-base font-semibold leading-7 text-gray-900">Tax Records</h3>
+                    <ul>
+                        @foreach($taxRecords as $tax)
+                            <li>
+                                <strong>Tax Name:</strong> {{ $tax->tax_name }}<br>
+                                <strong>Tax Amount:</strong> {{ $tax->tax_rate }}<br>
+                                <!-- Add more tax record details here as needed -->
+                            </li>
+                            <br>
+                        @endforeach
+                    </ul>
+                @endunless
+            </div>
+
+
+            <div>
                 <div class="flex space-x-3 justify-end" x-data="{ showConfirmation: false }">
                     <form method="POST" action="/employees/{{$employee->id}}">
                         @csrf
