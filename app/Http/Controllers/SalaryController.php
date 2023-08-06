@@ -47,7 +47,7 @@ class SalaryController extends Controller
 
         Salary::create($formFields);
 
-        return redirect('/salaries');
+        return redirect('/salaries')->with('message', 'Salary added successfully!');
 
 
     }
@@ -85,7 +85,7 @@ class SalaryController extends Controller
 
         $salary->update($formFields);
 
-        return redirect('/salaries');
+        return redirect('/salaries')->with('message', 'Salary updated successfully!');
     }
 
     /**
@@ -94,6 +94,6 @@ class SalaryController extends Controller
     public function destroy(Salary $salary)
     {
         $salary->delete();
-        return redirect('/salaries');
+        return redirect('/salaries')->with('message', 'Salary deleted successfully!');
     }
 }

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AllowanceController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\TaxController;
+use App\Http\Livewire\Allowance\Edit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,31 +39,31 @@ Route::middleware('auth')->group(function () {
 // Employees Routes -----------------------------------------------------------------------------------------
 Route::group(['prefix' => 'employees'], function () {
     // Get register employee form
-    Route::get('/create', [EmployeeController::class, 'create'])->name('CreateEmployee');
+    Route::get('/create', [EmployeeController::class, 'create'])->name('CreateEmployee')->middleware('auth');
 
     // Store employee information
-    Route::post('/', [EmployeeController::class, 'store']);
+    Route::post('/', [EmployeeController::class, 'store'])->middleware('auth');
 
     // Show all employees
-    Route::get('/', [EmployeeController::class, 'index'])->name('AllEmployees');
+    Route::get('/', [EmployeeController::class, 'index'])->name('AllEmployees')->middleware('auth');
 
     // Get edit employee form
-    Route::get('/{employee}/edit', [EmployeeController::class, 'edit']);
+    Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->middleware('auth');
 
     // Update employee information
-    Route::put('/{employee}', [EmployeeController::class, 'update']);
+    Route::put('/{employee}', [EmployeeController::class, 'update'])->middleware('auth');
 
     // Delete employee record
-    Route::delete('/{employee}', [EmployeeController::class, 'destroy']);
+    Route::delete('/{employee}', [EmployeeController::class, 'destroy'])->middleware('auth');
 
     // Show a single employee
-    Route::get('/{employee}', [EmployeeController::class, 'show']);
+    Route::get('/{employee}', [EmployeeController::class, 'show'])->middleware('auth');
 });
 
 
 
 // Salary Routes --------------------------------------------------------------------------------------------
-Route::group(['prefix' => '/salaries'], function () {
+Route::group(['prefix' => '/salaries', 'middleware' => 'auth'], function () {
     Route::get('/', [SalaryController::class, 'index'])->name('AllSalaries');
     Route::get('/create', [SalaryController::class, 'create'])->name('CreateSalaries');
     Route::post('/',  [SalaryController::class, 'store']);
@@ -72,16 +74,28 @@ Route::group(['prefix' => '/salaries'], function () {
 });
 
 
-// Allowance Routes
+// Allowances Routes
 
-Route::group(['prefix' => 'taxes'], function (){
-    Route::get('/', [TaxController::class, 'index'])->name('AllTaxes');
-    Route::get('/create', [TaxController::class, 'create'])->name('AddTaxes');
-    Route::post('/',  [TaxController::class, 'store']);
-    Route::get('/{tax}/edit', [TaxController::class, 'edit']);
-    Route::put('/{tax}', [TaxController::class, 'update']);
-    Route::delete('/{tax}', [TaxController::class, 'destroy']);
-    Route::get('/{tax}', [TaxController::class, 'show']);
+Route::group(['prefix' => 'taxes', 'middleware' => 'auth'], function (){
+    Route::get('/', [TaxController::class, 'index'])->name('AllTaxes')->middleware('auth');
+    Route::get('/create', [TaxController::class, 'create'])->name('AddTaxes')->middleware('auth');
+    Route::post('/',  [TaxController::class, 'store'])->middleware('auth');
+    Route::get('/{tax}/edit', [TaxController::class, 'edit'])->middleware('auth');
+    Route::put('/{tax}', [TaxController::class, 'update'])->middleware('auth');
+    Route::delete('/{tax}', [TaxController::class, 'destroy'])->middleware('auth');
+    Route::get('/{tax}', [TaxController::class, 'show'])->middleware('auth');
+
+
+});
+
+Route::group(['prefix' => 'allowances', 'middleware' => 'auth'], function (){
+    Route::get('/', [AllowanceController::class, 'index'])->name('AllAllowance');
+    Route::get('/create', [AllowanceController::class, 'create'])->name('AddAllowance');
+    Route::post('/',  [AllowanceController::class, 'store']);
+    Route::get('/{allowance}/edit', [AllowanceController::class, 'edit']);
+    Route::put('/{allowance}', [AllowanceController::class, 'update']);
+    Route::delete('/{allowance}', [AllowanceController::class, 'destroy']);
+    Route::get('/{allowance}', [AllowanceController::class, 'show']);
 
 
 });

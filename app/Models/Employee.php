@@ -31,6 +31,10 @@ class Employee extends Model
     {
         return $this->hasMany(Tax::class);
     }
+    public function allowance(): HasMany
+    {
+        return $this->hasMany(Allowance::class);
+    }
 
 
     // generating employee number based on the employee name and count

@@ -68,7 +68,7 @@ class EmployeeController extends Controller
 
         Employee::create($formFields);
 
-        return redirect('/employees')->with('message', 'Employee added successfully.');
+        return redirect('/employees')->with('message', 'Employee registered successfully!');
 
 
     }

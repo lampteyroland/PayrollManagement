@@ -39,13 +39,13 @@ class TaxController extends Controller
             'tax_rate' => 'numeric',
             'tax_type' => 'required',
             'description' => 'required',
-            'employee_id' => ['required','exists:employees,id']
+                'employee_id' => ['required','exists:employees,id']
 //                Rule::unique('taxes', 'employee_id')],
         ]);
 
         Tax::create($formFields);
 
-        return redirect('/taxes');
+        return redirect('/taxes')->with('message', 'Tax deleted successfully!');
 
 
     }
@@ -84,7 +84,7 @@ class TaxController extends Controller
 
         $tax->update($formFields);
 
-        return redirect('/taxes');
+        return redirect('/taxes')->with('message', 'Tax updated successfully!');
     }
 
     /**
@@ -93,6 +93,6 @@ class TaxController extends Controller
     public function destroy(Tax $tax)
     {
         $tax->delete();
-        return redirect('/salaries');
+        return redirect('/taxes')->with('message', 'Tax deleted successfully!');
     }
 }
