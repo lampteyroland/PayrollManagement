@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmployeeRegistered;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
+
 
 class EmployeeController extends Controller
 {
@@ -35,7 +38,7 @@ class EmployeeController extends Controller
 
     // Store product information
 
-    public function store(Request $request){
+    public function store(Request $request ){
         $formFields = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -66,7 +69,14 @@ class EmployeeController extends Controller
             $formFields['profile_image'] = $request->file('profile_image')->store('profile','public');
         }
 
-        Employee::create($formFields);
+        $employee = Employee::create($formFields);
+
+        // Send the email
+        $email = new EmployeeRegistered($employee);
+
+        Mail::to($employee->email)->queue($email);
+
+
 
         return redirect('/employees')->with('message', 'Employee registered successfully!');
 
