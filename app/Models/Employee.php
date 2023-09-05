@@ -19,10 +19,25 @@ class Employee extends Model
         'emergency_dob','emergency_street_address','profile_image'
    ];
 
+
+// Defining relationships with other tables
+
     public function salaries(): HasOne
     {
         return $this->hasOne(Salary::class);
     }
+
+    public function taxes(): HasMany
+    {
+        return $this->hasMany(Tax::class);
+    }
+    public function allowance(): HasMany
+    {
+        return $this->hasMany(Allowance::class);
+    }
+
+
+    // generating employee number based on the employee name and count
 
         protected static function boot()
         {
@@ -35,6 +50,7 @@ class Employee extends Model
             });
         }
 
+// Filtering employee based on a search
         public function scopeFilter($query, array $filters){
                if ($filters['search'] ?? false)
             {

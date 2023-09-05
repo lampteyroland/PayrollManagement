@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('allowances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
-            $table->string('allowance_type')->nullable();
+//            $table->string('allowance_type')->nullable();
             $table->double('allowance_amount')->nullable();
+            $table->string('allowance_name')->nullable();
             $table->string('currency')->nullable();
-            $table->dateTime('allowance_date')->nullable();
+            $table->date('allowance_date')->nullable();
             $table->boolean('is_taxable')->nullable();
             $table->text('remarks')->nullable();
             $table->softDeletes();

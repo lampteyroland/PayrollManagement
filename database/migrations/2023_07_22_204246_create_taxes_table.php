@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('tax_name');
             $table->string('tax_type');
             $table->double('tax_rate');
-            $table->dateTime('tax_date');
+            $table->date('tax_date');
             $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
