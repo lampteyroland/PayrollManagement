@@ -11,4 +11,10 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        // Output directory for built assets
+        outDir: 'public/build',
+        // Manifest file name
+        assetsDir: 'assets',
+    },
 });
