@@ -36,9 +36,6 @@
                 <div class=" w-full max-w-xs md:fixed md:w-1/6  overflow-y-auto ">
                     <x-sidebar>
 
-<<<<<<< HEAD
-gi
-=======
                     </x-sidebar>
                 </div>
                 <div class="w-5/6 ml-auto sm:ml-auto">
@@ -48,7 +45,7 @@ gi
             </div>
         </main>
 
->>>>>>> 02752cf290b76183d78ef81a64e6e7cf69ce65ca
+
 
 
         </div>
