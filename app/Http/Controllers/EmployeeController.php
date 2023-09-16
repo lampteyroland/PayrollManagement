@@ -14,7 +14,7 @@ class EmployeeController extends Controller
 
     // Show all employees
     public function  index(){
-        return view('employees.index',
+        return view('Employees.index',
             ['employees' => Employee::latest()->filter(request(['search']))->paginate(10)
             ]);
 
@@ -25,13 +25,13 @@ class EmployeeController extends Controller
         $taxRecords = $employee->taxes;
 
         // Now you can pass the employee and tax records to the view
-        return view('employees.show', compact('employee', 'taxRecords'));
+        return view('Employees.show', compact('employee', 'taxRecords'));
     }
 
 
     // Show create form
     public function create(Employee $employee){
-        return view('employees.create');
+        return view('Employees.create');
 
     }
 
@@ -84,7 +84,7 @@ class EmployeeController extends Controller
     }
 
     public function edit(Employee $employee){
-        return view('employees.edit', ['employee' => $employee]);
+        return view('Employees.edit', ['employee' => $employee]);
     }
 
     public function update(Request $request, Employee $employee){
