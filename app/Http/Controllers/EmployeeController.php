@@ -2,20 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmployeeRegistered;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
+
 
 class EmployeeController extends Controller
 {
 
     // Show all employees
     public function  index(){
-        return view('employees.index', ['employees' => Employee::all()]);
+        return view('employees.index',
+            ['employees' => Employee::latest()->filter(request(['search']))->paginate(10)
+            ]);
+
     }
 
     public function show(Employee $employee){
-        return  view('employees.show', ['employee' => $employee]);
+        // Get all tax records related to the employee
+        $taxRecords = $employee->taxes;
+
+        // Now you can pass the employee and tax records to the view
+        return view('employees.show', compact('employee', 'taxRecords'));
     }
 
 
@@ -28,7 +38,7 @@ class EmployeeController extends Controller
 
     // Store product information
 
-    public function store(Request $request){
+    public function store(Request $request ){
         $formFields = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -59,9 +69,16 @@ class EmployeeController extends Controller
             $formFields['profile_image'] = $request->file('profile_image')->store('profile','public');
         }
 
-        Employee::create($formFields);
+        $employee = Employee::create($formFields);
 
-        return redirect('/employees');
+        // Send the email
+        $email = new EmployeeRegistered($employee);
+
+        Mail::to($employee->email)->queue($email);
+
+
+
+        return redirect('/employees')->with('message', 'Employee registered successfully!');
 
 
     }
@@ -71,6 +88,7 @@ class EmployeeController extends Controller
     }
 
     public function update(Request $request, Employee $employee){
+
         $formFields = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -96,6 +114,10 @@ class EmployeeController extends Controller
             'emergency_dob'=> 'required',
             'emergency_street_address' => 'required',
         ]);
+
+        if ($request->hasFile('profile_image')){
+            $formFields['profile_image'] = $request->file('profile_image')->store('profile','public');
+        }
 
         $employee->update($formFields);
 
