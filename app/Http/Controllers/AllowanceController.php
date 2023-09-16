@@ -13,7 +13,7 @@ class AllowanceController extends Controller
      */
     public function index()
     {
-        return view('allowances.index', ['allowances' => Allowance::latest()->paginate(10)]);
+        return view('Allowances.index', ['allowances' => Allowance::latest()->paginate(10)]);
     }
 
     /**
@@ -30,7 +30,7 @@ class AllowanceController extends Controller
             // Add more currencies as needed
         ];
         $employees = Employee::all();
-        return view('allowances.create', compact('employees', 'currencies'));
+        return view('Allowances.create', compact('employees', 'currencies'));
     }
 
     /**
@@ -57,7 +57,7 @@ class AllowanceController extends Controller
      */
     public function show(Allowance $allowance)
     {
-        return  view('allowances.show', ['allowance' => $allowance]);
+        return  view('Allowances.show', ['allowance' => $allowance]);
     }
 
     /**

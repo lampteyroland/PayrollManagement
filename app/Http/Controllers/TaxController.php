@@ -15,7 +15,7 @@ class TaxController extends Controller
     public function index()
     {
         $employees = Employee::all();
-        return view('taxes.index', ['taxes' => Tax::latest()->paginate(10)], compact('employees'));
+        return view('Taxes.index', ['taxes' => Tax::latest()->paginate(10)], compact('employees'));
 
     }
 
@@ -25,7 +25,7 @@ class TaxController extends Controller
     public function create()
     {
         $employees = Employee::all();
-        return view('taxes.create', compact('employees'));
+        return view('Taxes.create', compact('employees'));
     }
 
     /**
@@ -55,7 +55,7 @@ class TaxController extends Controller
      */
     public function show(Tax $tax)
     {
-        return  view('taxes.show', ['tax' => $tax]);
+        return  view('Taxes.show', ['tax' => $tax]);
     }
 
     /**
@@ -64,7 +64,7 @@ class TaxController extends Controller
     public function edit(Tax $tax)
     {
         $employees = Employee::all();
-        return view('taxes.edit', compact('tax','employees'));
+        return view('Taxes.edit', compact('tax','employees'));
     }
 
     /**
